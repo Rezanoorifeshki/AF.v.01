@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    {%load static%}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>فروشگاه اَلو فیوز - خرید انواع فیوز و محصولات الکتریکی</title>
+    <meta name="keywords" content="فیوز مینیاتوری, محافظ جان, کنتور دیجیتال, فروشگاه محصولات الکتریکی, تخفیف محصولات الکتریکی">
+    <meta name="description" content="فروشگاه اَلو فیوز بهترین محصولات الکتریکی را با تخفیف‌های ویژه ارائه می‌دهد. انواع فیوز، محافظ جان، و کنتورهای دیجیتال با کیفیت بالا و قیمت مناسب.">
+    <meta name="author" content="الوفیوز">
+
+    <!-- Preload Font -->
+    <link rel="preload" href="{%static 'afapp/'%}fonts/riode.ttf?5gap68" as="font" type="font/woff2" crossorigin="anonymous">
+    <link rel="preload" href="{%static 'afapp/'%}vendor/fontawesome-free/webfonts/fa-solid-900.woff2" as="font" type="font/woff2"
+          crossorigin="anonymous">
+    <link rel="preload" href="{%static 'afapp/'%}vendor/fontawesome-free/webfonts/fa-brands-400.woff2" as="font" type="font/woff2"
+          crossorigin="anonymous">
+          <link rel="icon" type="image/png" href="{%static 'afapp/'%}Logo/aloo-fiooz-ai-1.png">
+    <script>
+        WebFontConfig = {
+            google: { families: ['vazir:400,500,600,700,800,900'] }
+        };
+        (function (d) {
+            var wf = d.createElement('script'), s = d.scripts[0];
+            wf.src = '{%static "afapp/"%}js/webfont.js';
+            wf.async = true;
+            s.parentNode.insertBefore(wf, s);
+        })(document);
+    </script>
+     <script type="application/ld+json">
+        {
+           "@context": "https://schema.org",
+           "@type": "WebPage",
+           "name": "فروشگاه اَلو فیوز",
+           "description": "فروشگاه اَلو فیوز بهترین محصولات الکتریکی را با تخفیف‌های ویژه ارائه می‌دهد.",
+           "url": "{{ request.build_absolute_uri }}"
+        }
+        </script>
+    <link rel="stylesheet" type="text/css" href="{%static 'afapp/'%}vendor/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="{%static 'afapp/'%}vendor/animate/animate.min.css">
+    <!-- Plugins CSS File -->
+    <link rel="stylesheet" type="text/css" href="{%static 'afapp/'%}vendor/magnific-popup/magnific-popup.min.css">
+    <link rel="stylesheet" type="text/css" href="{%static 'afapp/'%}vendor/owl-carousel/owl.carousel.min.css">
+    <link rel="stylesheet" type="text/css" href="{%static 'afapp/'%}vendor/sticky-icon/stickyicon.css">
+    <!-- Font Vazir -->
+    <link href="{%static 'afapp/'%}fonts/vazir/font-vazir.css" rel="stylesheet" />
+    <!-- Main CSS File -->
+    <link rel="stylesheet" type="text/css" href="{%static 'afapp/'%}css/demo6.min.css">
+</head>
+<body class="home">
+    <div class="page-wrapper">
+        <h1 class="d-none"> فروشگاه اَلو فیوز </h1>
+        <header class="header header-border rtl text-right">
+            <div class="header-middle sticky-header fix-top sticky-content has-center">
+                <div class="container">
+                    <div class="header-right">
+                        <a href="#" class="mobile-menu-toggle" aria-label="منوی موبایل">
+                            <i class="d-icon-bars2"></i>
+                        </a>
+                        <nav class="main-nav">
+                            <ul class="menu">
+                                <li>
+                                    <a href="/"><i class="fas fa-home"></i> خانه</a>
+                                </li>
+                                <li>
+                                    <a href="/shop"><i class="fas fa-store-alt"></i> محصولات <i class="fas fa-angle-down"></i></a>
+                                    <ul>
+                                        {%for item in categorys%}
+                                        <li >
+                                            <a href="/shopcat/{{item.id}}"> {{item.name}}  </a>
+                                        </li>
+                                        {%endfor%}
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="/aboutus"><i class="fas fa-street-view"></i>  درباره ما </a>
+                                </li>
+                                <li >
+                                    <li><a href="/contactus"> <i class="fas fa-comments"></i> تماس با ما </a></li>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="header-center">
+                        <a href="/" class="logo">
+                            <img src="{%static 'afapp/'%}Logo/Asset-1.png " alt="لوگوی فروشگاه الوفیوز" width="153" height="44" />
+                        </a>
+                        <!-- End of Logo -->
+                    </div>
+                    <div class="header-left">
+                        <a href="/login" ><i class="fas fa-user"></i>ورود
+                        </a>
+                    &nbsp;                     &nbsp;
+                    <span class="divider"></span>
+                    <div class="dropdown cart-dropdown type2 off-canvas mr-0 mr-lg-2">
+                        <a href="#" class="cart-toggle label-block link">
+                            <div class="cart-label d-lg-show">
+                                <span class="cart-name">سبد خرید:</span>
+                                <span class="cart-price">5,700,000 تومان</span>
+                            </div>
+                            <i class="d-icon-bag"><span class="cart-count">2</span></i>
+                        </a>
+                        <div class="canvas-overlay"></div>
+                        <!-- End Cart Toggle -->
+                        <div class="dropdown-box">
+                            <div class="canvas-header">
+                                <h4 class="canvas-title">سبد خرید</h4>
+                                <a href="#" class="btn btn-dark btn-link btn-icon-right  btn-close">بستن<i
+                                        class="d-icon-arrow-left"></i><span class="sr-only">سبد خرید</span></a>
+                            </div>
+                            <div class="products scrollable">
+                                <div class="product product-cart">
+                                    <figure class="product-media">
+                                        <a href="/shopproduct">
+                                            <img src="{%static 'afapp/'%}images/imgpsh_fullsize_anim-copy-2-1-300x300.png" alt="product" width="80"
+                                                height="88" />
+                                        </a>
+                                        <button class="btn btn-link btn-close">
+                                            <i class="fas fa-times"></i><span class="sr-only">بستن</span>
+                                        </button>
+                                    </figure>
+                                    <div class="product-detail">
+                                        <a href="/shopproduct" class="product-name">   کنتور دیجتال تک فاز  </a>
+                                        <div class="price-box">
+                                            
+                                            <span class="product-price">1,700,000 تومان</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- End of Cart Product -->
+                                <div class="product product-cart">
+                                    <figure class="product-media">
+                                        <a href="/shopproduct">
+                                            <img src="{%static 'afapp/'%}images/mohafez.jpg" alt="product" width="80"
+                                                 height="88" />
+                                        </a>
+                                        <button class="btn btn-link btn-close">
+                                            <i class="fas fa-times"></i><span class="sr-only">بستن</span>
+                                        </button>
+                                    </figure>
+                                    <div class="product-detail">
+                                        <a href="shop-product" class="product-name"> محافظ جان تک فاز  </a>
+                                        <div class="price-box">
+                                            
+                                            <span class="product-price">1,700,000 تومان</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- End of Cart Product -->
+                            </div>
+                            <!-- End of Products  -->
+                            <div class="cart-total">
+                                <label>جمع سبد:</label>
+                                <span class="price">5,700,000 تومان</span>
+                            </div>
+                            <!-- End of Cart Total -->
+                            <div class="cart-action">
+                                <a href="/cart" class="btn btn-dark btn-link">سبد خرید</a>
+                                <a href="/checkout" class="btn btn-dark"><span>پرداخت</span></a>
+                            </div>
+                            <!-- End of Cart Action -->
+                        </div>
+                        <!-- End Dropdown Box -->
+                    </div>
+                        <div class="header-search hs-toggle mobile-search">
+                            <a href="#" class="search-toggle">
+                                <i class="d-icon-search"></i>
+                            </a>
+                            <form action="#" class="input-wrapper">
+                                <input type="text" class="form-control" name="search" autocomplete="off"
+                                       placeholder="جستجو ..." required />
+                                <button class="btn btn-search" type="submit">
+                                    <i class="d-icon-search"></i>
+                                </button>
+                            </form>
+                        </div>
+                        <!-- End of Header Search -->
+                    </div>
+                </div>
+            </div>
+        </header>
+            
+        <!-- End of Header -->
+        <main class="main rtl text-right">
+            <div class="page-content">
+
+                <section class="intro-slider owl-carousel owl-theme owl-rtl row owl-dot-inner animation-slider owl-nav-arrow cols-1 appear-animate"
+                         data-owl-options="{
+                         'rtl':true,
+                    'items': 1,
+                    'nav': false,
+                    'loop': false,
+                    'dots': false,
+                    'autoplay': false,
+                    'responsive': {
+                        '1360': {
+                            'nav': true
+                        }
+                    }
+                }">
+                {%if best_seller%}
+                    <div class="intro-slide1 banner banner-fixed" style="background-color: #f6f6f6">
+                        <figure>
+                            <img src="{%static 'afapp/'%}images/demos/demo6/slides/1.png"  alt="  {{best_seller.name}}   - پرفروش این ماه" width="1903" height="650" />
+                        </figure>
+                        <div class="container">
+                            <div class="banner-content y-50 text-right rtl">
+                                <div class="slide-animate" data-animation-options="{
+                                    'name': 'fadeInUpShorter',
+                                    'duration': '1s'
+                                }">
+                                    <h4 class="banner-subtitle text-uppercase text-grey mb-2">پرفروش این ماه</h4>
+                                    <h3 class="banner-title font-weight-bold ls-m">   {{best_seller.name}}    </h3>
+                                    <a href="/shopproduct/{{best_seller.id}}" class="btn btn-primary btn-link btn-underline" aria-label="مشاهده محصولات و انتخاب">
+
+                                        مشاهده و انتخاب<i class="d-icon-arrow-left"></i>
+                                    </a>
+                                    <figure class="floating y-50" data-options='{"invertX":false,"invertY":false}'
+                                            data-floating-depth=".4">
+                                        <img class="layer h-auto" src="{{best_seller.image.url}}"
+                                        alt=" {{best_seller.name}}  - پرفروش این ماه" style="max-width: 391px; max-height: 401px;" />
+                                    </figure>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {%endif%}
+                    {%for item in products%}
+                    {%if item.isreturn%}
+                    <div class="intro-slide2 banner banner-fixed" style="background-color: #5A5957;">
+                        <figure>
+                            <img src="{%static 'afapp/'%}images/demos/demo6/slides/2.png" alt="{{item.name}} - محصول جدید" width="1903" height="650" />
+                        </figure>
+                        <div class="container">
+                            <div class="banner-content y-50 ml-lg-auto rtl text-right">
+                                <div class="slide-animate" data-animation-options="{
+                                    'name': 'fadeInRightShorter',
+                                    'duration': '1s'
+                                }">
+                                    <h4 class="banner-subtitle text-primary text-uppercase">کالای جدید</h4>
+                                    <h3 class="banner-title text-white font-weight-bold ls-m">    {{item.name}}      </h3>
+                                    <a href="/shopproduct/{{item.id}}" class="btn btn-white btn-link btn-underline">
+                                        مشاهده و خرید<i class="d-icon-arrow-left"></i>
+                                    </a>
+                                    <figure class="floating y-50" data-options='{"invertX":false,"invertY":false}'
+                                            data-floating-depth=".4">
+                                        <img class="layer h-auto" src="{{item.image.url}}"
+                                        alt=" {{item.name}} - محصول جدید" style="max-width: 391px; max-height: 401px;" />
+                                    </figure>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {%endif%}
+                    {%endfor%}
+                </section>
+                <section class="product-wrapper mb-10 pb-8 appear-animate">
+                    <div class="container">
+                        <div class="toolbox">
+                            <div class="toolbox-right">
+                                <ul class="nav-filters product-filters" data-target="#products-grid">
+                                    <li>
+                                        <a href="#" class="nav-filter active font-weight-semi-bold"
+                                           data-filter="*">همه </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="nav-filter font-weight-semi-bold"
+                                           data-filter="."></a>
+                                    </li>
+                                    {%for item in categorys%}
+                                    <li>
+                                        <a href="#" class="nav-filter font-weight-semi-bold"
+                                           data-filter=".{{item.zirname}}"> {{item.name}} </a>
+                                    </li>
+                                    {%endfor%}
+                                </ul>
+                                <span class="divider"></span>
+                                <div class="header-search hs-toggle">
+                                    <a href="#" class="search-toggle">
+                                        <i class="d-icon-search"></i>جستجو
+                                    </a>
+                                    <form method="get" class="input-wrapper">
+                                        <input type="text" class="form-control" name="search" autocomplete="off"
+                                               placeholder="جستجو ..." required />
+                                        <button class="btn btn-search" type="submit" title="submit-button">
+                                            <i class="d-icon-search"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                                <!-- End of Header Search -->
+                            </div>
+
+                            <div class="toolbox-left">
+                                <a href="#" class="btn btn-link  right-sidebar-toggle font-weight-semi-bold ml-0">
+                                    <i class="d-icon-filter-3"></i>فیلتر
+                                </a>
+                            </div>
+                        </div>
+                        <div class="row grid products-grid mb-2" id="products-grid" data-grid-options="{
+                            'masonry': {
+                                'columnWidth': ''
+                            }
+                        }">
+                        {%for item in products%}
+                            <div class="col-md-3 col-sm-4 col-6 grid-item {{item.category.zirname}} essentials">
+                                <div class="product-wrap">
+                                    <div class="product">
+                                        <figure class="product-media" style="background-color: #f5f5f5;">
+                                            <a href="/shopproduct/{{item.id}}" title="مشاهده {{item.name}}">
+                                                <img src="{{item.image.url}}" alt="تصویر محصول {{item.name}}" width="280" height="315">
+                                            </a>
+                                            <div class="product-label-group">
+                                                {%if item.isreturn%}
+                                                <label class="product-label label-new">جدید</label>
+                                                {%endif%}
+                                                {% if item.discount and item.discountutil%}
+                                                <label class="product-label label-sale">%{{item.discountpercentage}} تخفیف</label>
+                                                {%endif%}
+                                            </div>
+                                            <div class="product-action-vertical">
+                                                <a href="#" class="btn-product-icon btn-cart" data-toggle="modal"
+                                                   data-target="#addCartModal" title="اضافه به خرید">
+                                                    <i class="d-icon-bag"></i>
+                                                </a>
+                                                <a href="#" class="btn-product-icon btn-wishlist"
+                                                   title="اضافه به علاقه مندی"><i class="d-icon-heart"></i></a>
+                                            </div>
+                                            <div class="product-action">
+                                                <a href="/shopproduct/{{item.id}}" class="btn-product" title="مشاهده و انتخاب ">
+                                                    مشاهده و انتخاب
+                                                </a>
+                                            </div>
+                                        </figure>
+                                        <div class="product-details rtl">
+                                            <div class="product-cat">
+                                                <a href="/shopproduct/{{item.id}}"> {{item.category.name}} </a>
+                                            </div>
+                                            <h3 class="product-name">
+                                                <a href="/shopproduct/{{item.id}}"> {{item.name}}  </a>
+                                            </h3>
+                                            <div class="product-price">
+                                                {%if item.discountprice and  item.discountprice != item.price%}
+                                                <ins class="new-price"> {{item.discountprice}} تومان</ins>
+                                                <del class="old-price"> {{item.price}} تومان</del>
+                                                {%else%}
+                                                <ins class="new-price"> {{item.price}} تومان</ins>
+                                                {%endif%}
+                                            </div>
+                                            <div class="ratings-container">
+                                                <div class="ratings-full">
+                                                    <span class="ratings" style="width:60%"></span>
+                                                    <span class="tooltiptext tooltip-top"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {%endfor%}
+                        </div>
+                        <div class="text-center">
+                            <a class="btn btn-outline btn-dark btn-load" href="ajax/ajax-products-demo6.html"
+                               data-load-to="#products-grid">بیشتر</a>
+                        </div>
+                    </div>
+                </section>
+                <aside class="right-sidebar shop-sidebar">
+                    <div class="sidebar-overlay"></div>
+                    <div class="sidebar-content">
+                        <div class="filter-actions mb-4">
+                            <a href="#"
+                               class="sidebar-toggle-btn toggle-remain btn btn-outline btn-primary text-uppercase btn-icon-left">
+                                فیلتر<i class="d-icon-arrow-left"></i>
+                            </a>
+                            <a href="#" class="filter-clean">پاک کردن همه</a>
+                        </div>
+                        <div class="widget widget-collapsible price-with-count">
+                            <h3 class="widget-title">فیلتر بر اساس قیمت</h3>
+                            <ul class="widget-body filter-items filter-price">
+                                <li><a href="#"> 1،800،000  -  500,000 تومان </a><span>(0)</span></li>
+                                <li><a href="#"> 500,000 تومان  -  800,000 تومان </a><span>(7)</span></li>
+                                <li><a href="#"> 2,800,000 تومان  -  3،800،000 تومان  </a><span>(18)</span></li>
+                                <li><a href="#"> 3،800،000 +</a><span>(5)</span></li>
+                            </ul>
+                        </div>
+                        <div class="widget widget-collapsible">
+                            <h3 class="widget-title">فیوز مینیاتوری</h3>
+                            <ul class="widget-body filter-items">
+                                <li><a href="#">تک فاز</a></li>
+                                <li><a href="#">تک فاز + نول</a></li>
+                                <li><a href="#">سه فاز</a></li>
+                                <li><a href="#">سه فاز + نول</a></li>
+                            </ul>
+                        </div>
+                        <div class="widget widget-collapsible">
+                            <h3 class="widget-title">قدرت قطع </h3>
+                            <ul class="widget-body filter-items">
+                                <li><a href="#">4.5 کیلو </a></li>
+                                <li><a href="#"> 6 کیلو</a></li>
+                                <li><a href="#">10 کیلو </a></li>
+                            </ul>
+                        </div>
+                        <div class="widget widget-collapsible">
+                            <h3 class="widget-title">محافظ جان</h3>
+                            <ul class="widget-body filter-items">
+                                <li><a href="#">تک فاز</a></li>
+                                <li><a href="#">سه فاز</a></li>
+                            </ul>
+                        </div>
+                        <div class="widget widget-collapsible">
+                            <h3 class="widget-title">کنتور</h3>
+                            <ul class="widget-body filter-items">
+                                <li><a href="#"> دیجتال تک فاز</a></li>
+                                <li><a href="#">دیجتال سه فاز</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </main>
+        <!-- End of Main -->
+        <footer class="footer rtl text-right">
+            <div class="container">
+                <div class="footer-top">
+                    <div class="row align-items-center">
+                        <div class="col-lg-3">
+                            <a href="/" class="logo-footer" aria-label="لوگوی فروشگاه الوفیوز">
+                                <img src="{%static 'afapp/'%}Logo/Asset-1.png" alt="لوگوی فروشگاه الوفیوز" width="154" height="43" />
+                            </a>
+                            <!-- End FooterLogo -->
+                        </div>
+                        <div class="col-lg-9">
+                            <div class="widget widget-newsletter form-wrapper form-wrapper-inline">
+                                <div class="newsletter-info mx-auto mr-lg-2 ml-lg-4">
+                                    <h4 class="widget-title"> اولین نفری باشید که باخبر می‌شود! </h4>
+                                    <p>جزء اولین کسانی باشید که از تخفیف ها و محصولات جدید ما باخبر می شوند.</p>
+                                </div>
+                                <form action="#" method="post" class="input-wrapper input-wrapper-inline input-wrapper-round">
+                                    {%csrf_token%}
+                                    <input type="tel" class="form-control" name="phone" placeholder="شماره موبایل خود را وارد کنید" aria-label="شماره موبایل" required pattern="09[0-9]{9}">
+                                    <button class="btn btn-primary btn-rounded btn-md mr-2" type="submit" aria-label="  ارسال  ">ارسال <i
+                                        class="d-icon-arrow-left"></i> </button>
+                                </form>
+                            </div>
+                            <!-- End Newsletter -->
+                        </div>
+                    </div>
+                </div>
+                <!-- End FooterTop -->
+                <div class="footer-middle">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-6">
+                            <div class="widget widget-info">
+                                <h4 class="widget-title"> تماس با ما </h4>
+                                {%for item in addres%}
+                                <ul class="widget-body ">
+                                    <li>
+                                        <label>شماره تلفن:</label></br>
+                                        <a href="tel:{{item.phoon1}}">{{item.phoon1}}</a></br>
+                                        <a href="tel:{{item.phoon2}}">{{item.phoon2}}</a></br>
+                                        <a href="tel:{{item.phoon3}}">{{item.phoon3}}</a></br>
+                                        <a href="tel:{{item.phoon4}}">{{item.phoon4}}</a></br>
+                                    </li>
+                                    <li>
+                                        <label>ایمیل:</label>
+                                        <a href="#">{{item.email1}}</a></li></br>
+                                        <a href="#">{{item.email2}}</a></li></br>
+                                        <a href="#">{{item.email3}}</a></li></br>
+                                    </li>
+                                    <li>
+                                        <label>آدرس:</label>
+                                        <a href="#"> {{item.adres}} </a>
+                                    </li>
+                                    <li>
+                                        <label>ساعات کاری:</label>
+                                        <a href="#">{{item.op}} صبح تا {{item.cl}} بعد از ظهر</a>
+                                    </li>
+                                </ul>
+                                {%endfor%}
+                            </div>
+                            <!-- End Widget -->
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <div class="widget ml-lg-4">
+                                <a href="/account"><h4 class="widget-title">حساب کاربری</h4></a>
+                                <ul class="widget-body ">
+                                    <li>
+                                        <a href="/aboutus">درباره ما</a>
+                                    </li>
+                                    <li>
+                                        <a href="/wishlist"> علاقمندی</a>
+                                    </li>
+                                    <li>
+                                        <a href="/cart">  سبد خرید</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- End Widget -->
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <div class="widget ml-lg-4">
+                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d202.53299415040192!2d51.42230305820703!3d35.68862470395649!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3f8e018e64cd4b23%3A0xd7d6da28ff15f564!2z2b7Yp9iz2KfamCDYudiy2YrYstmK!5e0!3m2!1sen!2s!4v1728208360628!5m2!1sen!2s" width="209" height="200" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            </div>
+                            <!-- End Widget -->
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <div class="widget widget-instagram">
+                                <h4 class="widget-title">نمادهای اعتماد الکترونیک</h4>
+                                <figure class="widget-body row">
+                                    <div class="nemad-box"><img src="{%static 'afapp/'%}images/enemad.png" alt="نماد اعتماد الکترونیک"></div>
+                                    <div class="nemad-box"><img src="{%static 'afapp/'%}images/samandehi.png" alt="نماد ساماندهی"></div>
+                                </figure>
+                            </div>
+                            <!-- End Instagram -->
+                        </div>
+                    </div>
+                </div>
+                <!-- End FooterMiddle -->
+                <div class="footer-bottom">
+                    <div class="footer-right">
+                        
+                    </div>
+                    <div class="footer-center">
+                        <p class="copyright">فروشگاه  آنلاین  اَلو فیوز &copy;  کلیه حقوق محفوظ است .</p>
+                    </div>
+                    <div class="footer-left ">
+                        <div class="social-links social-default pt-2 justify-content-center">
+                            <a href="#" class="social-link social-linkedin fab fa-instagram"></a>
+                            <a href="#" class="social-link social-email far fa-envelope"></a>
+                        </div>
+                    </div>
+                </div>
+                <!-- End FooterBottom -->
+            </div>
+        </footer>
+        <!-- End of Footer -->
+    </div>
+    <!-- Sticky Footer -->
+    <div class="sticky-footer sticky-content fix-bottom rtl text-right">
+        <a href="/" class="sticky-link active" aria-label="بازگشت به خانه">
+            <i class="d-icon-home"></i>
+            <span>خانه</span>
+        </a>
+        <a href="/wishlist" class="sticky-link" aria-label="مشاهده علاقه‌مندی‌ها">
+            <i class="d-icon-heart"></i>
+            <span>علاقه مندی</span>
+        </a>
+        <a href="/login" class="sticky-link" aria-label="مشاهده  حساب کاربری">
+            <i class="d-icon-user"></i>
+            <span>حساب کاربری</span>
+        </a>
+        <div class="header-search hs-toggle dir-up">
+            <a href="#" class="search-toggle sticky-link">
+                <i class="d-icon-search"></i>
+                <span>جستجو</span>
+            </a>
+            <form action="#" class="input-wrapper">
+                <input type="text" class="form-control" name="search" autocomplete="off"
+                       placeholder="جستجو ..." required />
+                <button class="btn btn-search" type="submit" title="submit-button">
+                    <i class="d-icon-search"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+    <!-- Scroll Top -->
+    <a id="scroll-top" href="#top" title="بازگشت به بالای صفحه" aria-label="بازگشت به بالا" class="scroll-top"><i class="d-icon-arrow-up"></i></a>
+    <!-- MobileMenu -->
+    <div class="mobile-menu-wrapper">
+        <div class="mobile-menu-overlay">
+        </div>
+        <!-- End of Overlay -->
+        <a class="mobile-menu-close" href="#" aria-label="بستن منوی موبایل"><i class="d-icon-times"></i></a>
+        <!-- End of CloseButton -->
+        <div class="mobile-menu-container scrollable">
+            
+            <ul class="mobile-menu mmenu-anim">
+                <li>
+                    <a href="/">صفحه اصلی</a>
+                </li>
+                <li>
+                    <a href=# class="active">محصولات</a>
+                    <ul>
+                        {%for item in categorys%}
+                        <li>
+                        <a href="/shopcat/{{item.id}}"> {{item.name}}  </a>
+                        </li>
+                        {%endfor%}
+                        
+                        
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">سایر صفحات</a>
+                    <ul>
+                        <li><a href="/aboutus">درباره ما</a></li>
+                        <li><a href="/contactus">تماس با ما</a></li>
+                        <li><a href="/login">حساب کاربری</a></li>
+                        <li><a href="/wishlist">علاقه مندی</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <!-- End of MobileMenu -->
+        </div>
+    </div>
+    <!-- newsletter-popup type2 -->
+    <div class="newsletter-popup rtl newsletter-pop2 mfp-hide" id="newsletter-popup">
+        <figure>
+            <img src="{% static 'afapp/'%}Logo/فیوز (5).jpg" width="250" height="264" alt="لوگوی فروشگاه" />
+        </figure>
+        <div class="newsletter-content">
+            <h2 class="font-weight-bolder">اولین نفری باشید که باخبر می‌شود!</h2>
+            <p class="text-grey">همین حالا شماره موبایل خود را وارد کنید و از جدیدترین تخفیف‌ها و محصولات فروشگاه ما مطلع شوید.</p>
+            <form action="#" method="post" class="input-wrapper input-wrapper-inline input-wrapper-round">
+                {%csrf_token%}
+                <input type="tel" class="form-control" name="phone" placeholder="شماره موبایل خود را وارد کنید" aria-label="شماره موبایل" required pattern="09[0-9]{9}">
+                <button class="btn btn-dark" type="submit">ارسال</button>
+            </form>
+            <div class="form-checkbox justify-content-center">
+                <input type="checkbox" class="custom-checkbox" id="hide-newsletter-popup" name="hide-newsletter-popup" />
+                <label for="hide-newsletter-popup">این پنجره دیگر نشان داده نشود.</label>
+            </div>
+            <div class="social-links">
+                <a href="#" class="social-link fab fa-instagram" target="_blank" aria-label="اینستاگرام"></a>
+                <a href="#" class="social-link fab fa-telegram" target="_blank" aria-label="تلگرام"></a>
+            </div>
+        </div>
+    </div>
+    <!-- Plugins JS File -->
+    <script src="{%static 'afapp/'%}vendor/jquery/jquery.min.js" defer></script>
+    <script src="{%static 'afapp/'%}vendor/elevatezoom/jquery.elevatezoom.min.js" defer></script>
+    <script src="{%static 'afapp/'%}vendor/magnific-popup/jquery.magnific-popup.min.js" defer></script>
+    <script src="{%static 'afapp/'%}vendor/jquery.floating/jquery.floating.min.js" defer></script>
+    <script src="{%static 'afapp/'%}vendor/owl-carousel/owl.carousel.min.js" defer></script>
+    <script src="{%static 'afapp/'%}vendor/imagesloaded/imagesloaded.pkgd.min.js" defer></script>
+    <script src="{%static 'afapp/'%}vendor/isotope/isotope.pkgd.min.js" defer></script>
+    <!-- Main JS File -->
+    <script src="{%static 'afapp/'%}js/main.min.js" defer></script>
+</body>
+</html>

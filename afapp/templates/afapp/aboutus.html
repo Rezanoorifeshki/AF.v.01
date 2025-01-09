@@ -1,0 +1,64 @@
+{%extends 'afapp/main.html'%}
+{%load static%}
+{%block 'title'%}
+درباره ما
+{%endblock%}
+{%block 'main'%}
+<main class="main rtl text-right">
+    <div class="page-header pl-4 pr-4" style=" background-color: #57b7c6 ">
+        <h3 class="page-subtitle font-weight-bold">خوش آمدید به الو فیوز</h3>
+        <h1 class="page-title font-weight-bold lh-1 text-white text-capitalize">درباره ما</h1> 
+    </div>
+    <div class="page-content mt-10 pt-10">
+        <!-- About Section -->
+    {%for i in about%}
+        <section class="customer-section pb-10 appear-animate">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="text-right">
+                        <h3 class="section-title font-weight-bold text-center">
+                            {{i.titell}}
+                        </h3>
+                        
+                        <p class="section-desc text-grey" style="text-align: right;">
+                            {{i.textt}}
+                        </p>
+                        
+                        <a href="/shop" class="btn btn-dark btn-link btn-underline ls-m">
+                            از محصولات ما دیدن کنید <i class="d-icon-arrow-left"></i>
+                        </a>
+                        
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- End About Section -->
+        <!-- Store Section -->
+        <section class="store-section pb-10 appear-animate">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="text-right">
+                        {% if i.titelll %}
+                        <h3 class="section-title font-weight-bold text-center">
+                            {{i.titelll}}
+                        </h3>
+                        {% endif %}
+                        {% if i.texttt %}
+                        <p class="section-desc text-grey" style="text-align: right;">
+                            {{i.texttt}}
+                        </p>
+                        {%endif%}
+                        {% if i.titelll and i.texttt  %}
+                        <a href="/shop" class="btn btn-dark btn-link btn-underline ls-m">
+                            از محصولات ما دیدن کنید <i class="d-icon-arrow-left"></i>
+                        </a>
+                        {%endif%}
+                    </div>
+                </div>
+            </div>
+        </section>
+        {%endfor%}
+    </div>
+</main>
+
+{%endblock%}

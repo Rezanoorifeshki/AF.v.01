@@ -1,0 +1,72 @@
+{%extends 'afapp/main.html'%}
+{%load static%}
+{%block 'title'%}
+تماس با ما
+{%endblock%}
+{%block 'main'%}
+<main class="main rtl text-right">
+    <div class="page-header" style=" background-color: #57b7c6 ">
+        <h1 class="page-title font-weight-bold text-capitalize ls-l">تماس با ما</h1>
+    </div>
+    <div class="page-content mt-10 pt-7">
+        <section class="contact-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 col-md-4 col-sm-6 ls-m mb-4">
+                        <div class="grey-section d-flex align-items-center h-100">
+                            {%for item in addres%}
+                            <div>
+                                <h4 class="mb-2 text-capitalize">  آدرس فروشگاه    </h4>
+                                <p>
+                                    {{item.adres}} 
+
+                                </p>
+                                <h4 class="mb-2 text-capitalize">تلفن فروشگاه</h4>
+                                <p>
+                                    <a href="tel:{{item.phoon1}}">{{item.phoon1}}</a></br>
+                                    <a href="tel:{{item.phoon2}}">{{item.phoon2}}</a></br>
+                                    <a href="tel:{{item.phoon3}}">{{item.phoon3}}</a></br>
+                                    <a href="tel:{{item.phoon4}}">{{item.phoon4}}</a></br>
+                                </p>
+                                <h4 class="mb-2 text-capitalize">ایمیل فروشگاه</h4>
+                                <p class="mb-4">
+                                    <a href="#">{{item.email1}}</a></li></br>
+                                    <a href="#">{{item.email2}}</a></li></br>
+                                    <a href="#">{{item.email3}}</a></li></br>                                         
+                                </p>
+                            </div>
+                            {%endfor%}
+                        </div>
+                    </div>
+                    <div class="col-lg-9 col-md-8 col-sm-6 d-flex align-items-center mb-4">
+                        <div class="w-100">
+                            <form class="pl-lg-2"  method="post">
+                                {% csrf_token %}
+                                <h4 class="ls-m font-weight-bold">تماس با ما</h4>
+                                <p>
+                                    فیلد های ستاره دار الزامی هستند .
+                                </p>  
+                                <div class="row mb-2">
+                                    <div class="col-12 mb-4">
+                                        <textarea class="form-control" required
+                                                  placeholder="متن*" name="ttext"></textarea>
+                                    </div>
+                                    <div class="col-md-6 mb-4">
+                                        <input class="form-control" type="text" name="flnname" placeholder=" نام و نام خانوادگی *" required>
+                                    </div>
+                                    <div class="col-md-6 mb-4">
+                                        <input class="form-control text-left" type="email" name="eemail" placeholder="ایمیل *" required>
+                                    </div>
+                                </div>
+                                <button type="submit"  class="btn btn-dark btn-rounded">
+                                    ارسال پیام <i class="d-icon-arrow-left"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</main>
+{%endblock%}
