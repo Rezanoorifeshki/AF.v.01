@@ -29,6 +29,8 @@ urlpatterns = [
     path('thanks/', thanks),
     path('aboutus/', aboutus),
     path('login/', login),
+    path('logout/', logout),
+    path('register/', register),
     path('account/',account),
 
 

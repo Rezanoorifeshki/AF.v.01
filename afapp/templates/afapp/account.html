@@ -7,7 +7,7 @@
 <main class="main account rtl text-right">
     <div class="page-content mt-4 mb-10 pb-6">
         <div class="container">
-            <h2 class="title title-center mb-10">حساب کاربری</h2>
+            <h2 class="title title-center mb-10"> حساب کاربری  </h2>
             <div class="tab tab-vertical gutter-lg">
                 <ul class="nav nav-tabs mb-4 col-lg-3 col-md-4" role="tablist">
                     <li class="nav-item">
@@ -20,12 +20,12 @@
                         <a class="nav-link text-right" href="#account">اطلاعات کاربری</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-right" href="/login">خروج</a>
+                        <a class="text-right" href="/logout">خروج</a>
                     </li>
                 </ul>
                 <div class="tab-content col-lg-9 col-md-8">
                     <div class="tab-pane active" id="dashboard">
-                        <p class="mb-0">سلام</p>
+                        <p class="mb-0">  سلام  {{user}} </p>
                         <p class="mb-8">
                             از داشبورد حساب خود می‌توانید آدرس‌های حمل و نقل و صورتحساب خود را مدیریت کنید، رمز عبور و جزئیات حساب خود را ویرایش کنید.
                         </p>
@@ -34,7 +34,8 @@
                         </a>
                     </div>
                     <div class="tab-pane" id="account">
-                        <form action="#" class="form">
+                        <form action="" class="form" method="post">
+                            {% csrf_token %}
                             <div class="row">
                                 <div class="col-sm-6">
                                     <label>نام*</label>
@@ -45,8 +46,8 @@
                                     <input type="text" class="form-control" name="last_name" required>
                                 </div> 
                                 <div class="col-sm-6">
-                                    <label>نام کاربری*</label>
-                                    <input type="text" class="form-control mb-4 text-left" name="display_name" required>
+                                    <label>نام کاربری</label>
+                                {{user}}
                                 </div>
                                 <div class="col-sm-6">
                                     <label>ایمیل*</label>
@@ -80,5 +81,4 @@
         </div>
     </div>
 </main>
-
 {%endblock%}

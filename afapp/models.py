@@ -4,6 +4,7 @@ from datetime import timedelta
 from decimal import Decimal,InvalidOperation
 from django.core.exceptions import ValidationError
 from ckeditor.fields import RichTextField
+from django.contrib.auth.models import AbstractUser
 # Create your models here.
 class Category(models.Model):
     name=models.CharField(max_length=50)
@@ -83,3 +84,12 @@ class Subscriber(models.Model):
     def __str__(self):
         return self.phone
 
+class CostomUser(AbstractUser):
+    firstname=models.CharField(max_length=20,verbose_name='نام')
+    lastname=models.CharField(max_length=100,verbose_name=' نام خانوادگی')
+    email=models.EmailField(verbose_name='ایمیل')
+    phonenumber=models.CharField(max_length=11,verbose_name='شماره تماس')
+    postalcode=models.CharField(max_length=10,verbose_name="کد پستی")
+    address=models.CharField(max_length=500,verbose_name="آدرس")
+
+    

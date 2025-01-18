@@ -2,7 +2,10 @@ from django.shortcuts import render,get_object_or_404,redirect,HttpResponse
 from django.db.models import Q 
 from django.utils.timezone import now
 from django.db import IntegrityError
+from django.contrib.auth import authenticate , login as lg , logout as lgo
+from django.contrib.auth.decorators import login_required
 from .models import *
+import re
 # Create your views here.
 def update_discounts(products):
     for item in products:
@@ -123,30 +126,82 @@ def aboutus(request):
     addres=Addres.objects.all()
     return render(request,'afapp/aboutus.html',context={'categorys':categorys,'about':about,'addres':addres})
 
+def register(request):
+    send(request)
+    categorys=Category.objects.all()
+    addres=Addres.objects.all()
+
+    if(request.method=='POST'):
+        password1=request.POST.get("password1")
+        password2=request.POST.get("password2")
+        username=request.POST.get("username")
+        username_regex = r'^[a-zA-Z0-9_-]{3,20}$'
+
+        if not re.match(username_regex, username):
+            error_message = 'نام کاربری باید بین 3 تا 20 کاراکتر باشد و فقط از حروف، اعداد، آندرلاین یا خط فاصله استفاده کند.'
+            return render(request, 'afapp/register.html', context={'categorys': categorys, 'addres': addres, 'error_message': error_message})
+
+        if CostomUser.objects.filter(username=username).exists():
+            error_message = 'نام کاربری وارد شده قبلاً ثبت شده است.'
+            return render(request, 'afapp/register.html', context={'categorys': categorys, 'addres': addres, 'error_message': error_message})
+
+        if password1 != password2:
+            error_message = 'رمز عبور شما با هم همخوانی ندارد.'
+            return render(request, 'afapp/register.html', context={'categorys': categorys, 'addres': addres, 'error_message': error_message})
+
+        password_regex = r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#$!%*?&])[A-Za-z\d@#$!%*?&]{8,}$'
+        if not re.match(password_regex, password1):
+            error_message = (
+                'رمز عبور باید حداقل 8 کاراکتر باشد و شامل حداقل یک حرف کوچک، یک حرف بزرگ، یک عدد و یک کاراکتر خاص مانند @, #, $.')
+            return render(request, 'afapp/register.html', context={'categorys': categorys, 'addres': addres, 'error_message': error_message})
+
+        if (password1==password2):
+            CostomUser.objects.create_user(username=username,password=password1)
+            return redirect("/login")
+        
+    return render(request,'afapp/register.html',context={'categorys':categorys,'addres':addres})
+
 def login(request):
     send(request)
     categorys=Category.objects.all()
     addres=Addres.objects.all()
-    error_message =None
-    if(request.method=='POST'):
-        user=request.POST.get('singin-email')
-        password=request.POST.get('singin-password')
-        if (password and user):
-            if(user=='reza' and password=='123'):
-                request.session['issing']=1
-                return redirect('/account')
-            else:
-                error_message = 'نام کاربری یا رمز عبور اشتباه است.' 
-                return render(request, 'afapp/login.html', {'categorys': categorys,'addres': addres,'error':error_message})
-    return render(request, 'afapp/login.html', {'categorys': categorys,'addres': addres})
 
+    if(request.method=='POST'):
+        password=request.POST.get("password")
+        username=request.POST.get("username")
+        che = authenticate(username=username, password=password)
+
+        if che is not None:
+                lg(request, che)
+                return redirect("/account")
+            
+        else:
+                error_message = "نام کاربری یا رمز عبور اشتباه است."
+                return render(request, 'afapp/login.html', {'categorys': categorys, 'addres': addres, 'error_message': error_message})
+
+    return render(request, 'afapp/login.html', {'categorys': categorys, 'addres': addres})
+
+@login_required
 def account(request):
     send(request)
     categorys=Category.objects.all()
     addres=Addres.objects.all()
-    x=request.session.get('issing')
-    if (x):
-         return render(request,'afapp/account.html',context={'categorys':categorys,'addres':addres})
-    else:
-        return redirect('/login')
+    if (request.method=='POST'):
+        first_name=request.POST.get("first_name")
+        last_name=request.POST.get("last_name")
+        email=request.POST.get("email")
+        phone_number=request.POST.get("phone_number")
+        postal_code=request.POST.get("postal_code")
+        address=request.POST.get("address")
+
+        if (first_name and  last_name and email and phone_number and postal_code and address ):
+            CostomUser.objects.create_user( firstname=first_name,lastname=last_name,email=email, phonenumber=phone_number, postalcode=postal_code,address=address)
+
+    return render(request,'afapp/account.html',context={'categorys':categorys,'addres':addres})
+  
+def logout(request):
+    lgo(request)
+    return redirect('/login')
+  
+
    

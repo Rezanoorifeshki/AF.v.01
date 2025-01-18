@@ -7,4 +7,5 @@ admin.site.register(Contactus)
 admin.site.register(Aboutus)
 admin.site.register(Addres)
 admin.site.register(Subscriber)
+admin.site.register(CostomUser)
 
