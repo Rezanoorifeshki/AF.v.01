@@ -4,7 +4,10 @@ from django.utils.timezone import now
 from django.db import IntegrityError
 from django.contrib.auth import authenticate , login as lg , logout as lgo
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
+from django.contrib.auth import update_session_auth_hash
 from .models import *
+from .forms import CostomUserForm
 import re
 # Create your views here.
 def update_discounts(products):
@@ -184,21 +187,39 @@ def login(request):
 @login_required
 def account(request):
     send(request)
+    user =request.user
     categorys=Category.objects.all()
     addres=Addres.objects.all()
-    if (request.method=='POST'):
-        first_name=request.POST.get("first_name")
-        last_name=request.POST.get("last_name")
-        email=request.POST.get("email")
-        phone_number=request.POST.get("phone_number")
-        postal_code=request.POST.get("postal_code")
-        address=request.POST.get("address")
-
-        if (first_name and  last_name and email and phone_number and postal_code and address ):
-            CostomUser.objects.create_user( firstname=first_name,lastname=last_name,email=email, phonenumber=phone_number, postalcode=postal_code,address=address)
-
-    return render(request,'afapp/account.html',context={'categorys':categorys,'addres':addres})
   
+    if( request.method == 'POST'):
+        
+        form =CostomUserForm(request.POST, instance=user) 
+        if form.is_valid():
+            current_password = form.cleaned_data.get('current_password')
+
+            if current_password and not user.check_password(current_password):
+                form.add_error('current_password', 'رمز عبور فعلی اشتباه است.')
+                return render(request,'afapp/account.html',context={'categorys':categorys,'addres':addres,'form':form})
+            
+            new_password = form.cleaned_data.get('new_password')
+
+            if new_password:
+                user.set_password(new_password) 
+
+            form.save()  
+            user.save() 
+            update_session_auth_hash(request, user) 
+
+            messages.success(request, 'اطلاعات با موفقیت ذخیره شد!')
+            return render(request,'afapp/account.html',context={'categorys':categorys,'addres':addres,'form':form})
+
+        else:
+            messages.error(request, 'لطفاً تمام فیلدها را به درستی پر کنید.')
+    else:
+        form =CostomUserForm(instance=user) 
+
+    return render(request,'afapp/account.html',context={'categorys':categorys,'addres':addres,'form':form})
+
 def logout(request):
     lgo(request)
     return redirect('/login')

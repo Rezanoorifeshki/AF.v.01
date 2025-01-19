@@ -4,6 +4,11 @@
  حساب کاربری-  الو فیوز
 {%endblock%}
 {%block 'main'%}
+{% if messages %}
+{% for message in messages %}
+    <div style="text-align: center; background-color: rgb(192, 188, 185);">{{ message }}</div>
+{% endfor %}
+{% endif %}
 <main class="main account rtl text-right">
     <div class="page-content mt-4 mb-10 pb-6">
         <div class="container">
@@ -17,7 +22,7 @@
                         <a class="nav-link text-right" href="#orders">سفارشات</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-right" href="#account">اطلاعات کاربری</a>
+                        <a class="nav-link text-right" href="#account"> پروفایل من </a>
                     </li>
                     <li class="nav-item">
                         <a class="text-right" href="/logout">خروج</a>
@@ -25,54 +30,159 @@
                 </ul>
                 <div class="tab-content col-lg-9 col-md-8">
                     <div class="tab-pane active" id="dashboard">
-                        <p class="mb-0">  سلام  {{user}} </p>
+                       <h6> <p class="mb-0">
+                            سلام {{user.username}}
+                        </p></h6>
                         <p class="mb-8">
-                            از داشبورد حساب خود می‌توانید آدرس‌های حمل و نقل و صورتحساب خود را مدیریت کنید، رمز عبور و جزئیات حساب خود را ویرایش کنید.
+                        از داشبورد حساب خود می توانید سفارشات اخیر خود را مشاهده کنید.
+                                آدرس های حمل و نقل و صورتحساب خود را مدیریت کنید،
+                                <br>و رمز عبور و جزئیات حساب خود را ویرایش کنید.
+                            </a>
                         </p>
                         <a href="/shop" class="btn btn-dark btn-rounded">
-                            رفتن به فروشگاه <i class="d-icon-arrow-left"></i>
+                            رفتن به فروشگاه  <i class="d-icon-arrow-left"></i>
                         </a>
+                    </div>
+                    <div class="tab-pane" id="orders">
+                        <table class="order-table">
+                            <thead>
+                                <tr>
+                                    <th class="pr-2">سفارش</th>
+                                    <th> تاریخ </th>
+                                    <th>وضعیت</th>
+                                    <th>جمع</th>
+                                    <th class="pl-2">اقدامات</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="order-number"><a href="#">#3596</a></td>
+                                    <td class="order-date"><span>2 آبان 1402</span></td>
+                                    <td class="order-status"><span>درحال بارگیری</span></td>
+                                    <td class="order-total"><span>3میلیون تومان برای 5 بسته </span></td>
+                                    <td class="order-action">
+                                        <a href="#"
+                                           class="btn btn-primary btn-link btn-underline">نمایش </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="order-number"><a href="#">#3593</a></td>
+                                    <td class="order-date"><span>2 آبان 1402</span></td>
+                                    <td class="order-status"><span>درحال بارگیری</span></td>
+                                    <td class="order-total"><span>3میلیون تومان برای 5 بسته</span></td>
+                                    <td class="order-action">
+                                        <a href="#"
+                                           class="btn btn-primary btn-link btn-underline">نمایش </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="order-number"><a href="#">#2547</a></td>
+                                    <td class="order-date"><span>2 آبان 1402</span></td>
+                                    <td class="order-status"><span>درحال بارگیری</span></td>
+                                    <td class="order-total"><span>3میلیون تومان برای 5 بسته</span></td>
+                                    <td class="order-action">
+                                        <a href="#"
+                                           class="btn btn-primary btn-link btn-underline">نمایش </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="order-number"><a href="#">#2549</a></td>
+                                    <td class="order-date"><span>2 آبان 1402</span></td>
+                                    <td class="order-status"><span>درحال بارگیری</span></td>
+                                    <td class="order-total"><span>3میلیون تومان برای 5 بسته</span></td>
+                                    <td class="order-action">
+                                        <a href="#"
+                                           class="btn btn-primary btn-link btn-underline">نمایش </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="order-number"><a href="#">#4523</a></td>
+                                    <td class="order-date"><span>2 آبان 1402</span></td>
+                                    <td class="order-status"><span>درحال بارگیری</span></td>
+                                    <td class="order-total"><span>3میلیون تومان برای 5 بسته</span></td>
+                                    <td class="order-action">
+                                        <a href="#"
+                                           class="btn btn-primary btn-link btn-underline">نمایش </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="order-number"><a href="#">#4526</a></td>
+                                    <td class="order-date"><span>2 آبان 1402</span></td>
+                                    <td class="order-status"><span>درحال بارگیری</span></td>
+                                    <td class="order-total"><span>3میلیون تومان برای 5 بسته</span></td>
+                                    <td class="order-action">
+                                        <a href="#"
+                                           class="btn btn-primary btn-link btn-underline">نمایش </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                     <div class="tab-pane" id="account">
                         <form action="" class="form" method="post">
                             {% csrf_token %}
                             <div class="row">
                                 <div class="col-sm-6">
-                                    <label>نام*</label>
-                                    <input type="text" class="form-control" name="first_name" required>
-                                </div>
-                                <div class="col-sm-6">
-                                    <label>نام خانوادگی*</label>
-                                    <input type="text" class="form-control" name="last_name" required>
-                                </div> 
-                                <div class="col-sm-6">
-                                    <label>نام کاربری</label>
-                                {{user}}
-                                </div>
-                                <div class="col-sm-6">
-                                    <label>ایمیل*</label>
-                                    <input type="email" class="form-control mb-4 text-left" name="email" required placeholder="ایمیل">
-                                </div>
-                                <div class="col-sm-6">
-                                    <label>شماره تماس*</label>
-                                    <input type="tel" class="form-control mb-4 text-left" name="phone_number" required placeholder="شماره تماس">
-                                </div>
-                                <div class="col-sm-6">
-                                    <label>کد پستی*</label>
-                                    <input type="text" class="form-control mb-4 text-left" name="postal_code" required placeholder="کد پستی">
+                                <label>نام </label>
+                                <input type="text" class="form-control" name="first_name" value="{{ user.first_name }}">
+                                {% if form.first_name.errors %}
+                                <div class="error">{{ form.first_name.errors }}</div>
+                                {% endif %}
+                            </div>
+                            <div class="col-sm-6">
+                                <label>نام خانوادگی</label>
+                                <input type="text" class="form-control" name="last_name" value="{{ user.last_name }}">
+                                {% if form.last_name.errors %}
+                                <div class="error">{{ form.last_name.errors }}</div>
+                                {% endif %}
+                            </div>
+                            <div class="col-sm-6">
+                                <label>ایمیل </label>
+                                <input type="email" class="form-control" name="email" value="{{ user.email }}">
+                                {% if form.email.errors %}
+                                <div class="error">{{ form.email.errors }}</div>
+                                {% endif %}
+                            </div>
+                            <div class="col-sm-6">
+                                <label>شماره تماس</label>
+                                <input type="text" class="form-control" name="phonenumber" value="{{ user.phonenumber }}">
+                                {% if form.phonenumber.errors %}
+                                <div class="error">{{ form.phonenumber.errors }}</div>
+                                {% endif %}
+                            </div>
+                            <div class="col-sm-6">
+                                <label>کد پستی</label>
+                                <input type="text" class="form-control" name="postalcode" value="{{ user.postalcode }}">
+                                {% if form.postalcode.errors %}
+                                <div class="error">{{ form.postalcode.errors }}</div>
+                                {% endif %}
+                            </div>
+                            <div >
+                                <label>آدرس</label>
+                                    <textarea class="form-control" name="address">{{ user.address }}</textarea>
+                                    {% if form.address.errors %}
+                                <div class="error">{{ form.address.errors }}</div>
+                                {% endif %}
                                 </div>
                             </div>
-                            <label>آدرس پستی*</label>
-                            <textarea class="form-control mb-4 text-left" name="address" rows="3" required placeholder="  آدرس کامل شامل شهر،استان و شهرستان  "></textarea>
-                            <fieldset>
-                                <legend>تغییر رمز عبور</legend>
-                                <label>رمز عبور فعلی (خالی بگذارید تا بدون تغییر باقی بماند)</label>
-                                <input type="password" class="form-control mb-4 text-left ltr" name="current_password">
-                                <label>رمز عبور جدید (خالی بگذارید تا بدون تغییر باقی بماند)</label>
-                                <input type="password" class="form-control mb-4 text-left ltr" name="new_password">
-                                <label>رمز عبور جدید را تایید کنید</label>
-                                <input type="password" class="form-control mb-4 text-left ltr" name="confirm_password">
-                            </fieldset>
+                         
+                                <legend>تغییر پسورد</legend>
+                            
+                                <label for="current_password">رمز عبور فعلی (خالی بگذارید تا بدون تغییر باقی بماند)</label>
+                                <input type="password" class="form-control text-left ltr" name="current_password" id="current_password" value="{{ user.current_password }}">
+                                {% if form.current_password.errors %}
+                                <div class="error">{{ form.current_password.errors }}</div>
+                                {% endif %}
+                                <label for="new_password">رمز عبور جدید (خالی بگذارید تا بدون تغییر باقی بماند)</label>
+                                <input type="password" class="form-control text-left ltr" name="new_password" id="new_password" value="{{ user.new_password }}">
+                                {% if form.new_password.errors %}
+                                <div class="error">{{ form.new_password.errors }}</div>
+                                {% endif %}
+                                <label for="confirm_password">رمز عبور جدید را تایید کنید</label>
+                                <input type="password" class="form-control text-left ltr" name="confirm_password" id="confirm_password" value="{{ user.confirm_password }}" >
+                                {% if form.confirm_password.errors %}
+                                <div class="error">{{ form.confirm_password.errors }}</div>
+                                {% endif %}
                             <button type="submit" class="btn btn-primary">ذخیره تغییرات</button>
                         </form>
                     </div>
